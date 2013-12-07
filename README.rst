@@ -18,8 +18,31 @@ in current working directory. This file lists all instrumented
 types and the access counters for offsets into those types.
 
 To combine this information with the debug information for
-more user-friendly output, use the struct_layout tool and
+more user-friendly output, use the `struct_layout`_ tool and
 use the profile as input.
+
+.. _`struct_layout`: https://github.com/arvidn/struct_layout
+
+output format
+-------------
+
+Each instrumented type has its fully qualified name printed
+on a single line preceded by a blank line (even the first type).
+
+After each instrumented type follows a list of offsets into that
+type, colon, and the number of times that offset was accessed. The
+counter does not distinguish between reads and writes. These
+lines are indented by at least 3 spaces, but the offset is right
+adjusted and may contain some leading spaces too.
+
+The general outline looks like this:
+
+.. parsed-literal::
+	
+	*<blank line>*
+	*<fully qualified name of instrumented type>*
+	   *<offset>*:*<hit count>*
+	   *<offset>*:*<hit count>*
 
 example usage
 -------------
