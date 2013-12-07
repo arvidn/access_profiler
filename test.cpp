@@ -1,46 +1,26 @@
 #include "access_profiler.hpp"
 #include <stdio.h>
 
-using namespace access_profiler;
-
-namespace foo
+struct test : access_profiler::instrument_type<test>
 {
-	struct test : instrument_type<test>
-	{
-		test() : a(0), b(0) {}
-		char array[50];
-		int a;
-		int b;
-	};
-}
-
-namespace bar
-{
-	struct test2 : instrument_type<test2>
-	{
-		test2() : a(0), b(0) {}
-		char array[5000];
-		int a;
-		int b;
-	};
-}
+	test() : a(0), b(0) {}
+	char array[50];
+	int a;
+	int b;
+};
 
 int main(int argc, char* argv[])
 {
-	foo::test* t1 = new foo::test;
-	bar::test2* t2 = new bar::test2;
-	bar::test2* t3 = new bar::test2;
+	test* t1 = new test;
 
 	for (int i = 0; i < 10; ++i)
 	{
 		++t1->a;
-		t2->a += t1->a;
-		t3->b = t2->a;
+		t1->b += t1->a;
 	}
 
+	printf("%d\n", t1->b);
 
 	delete t1;
-	delete t2;
-	delete t3;
 }
 
