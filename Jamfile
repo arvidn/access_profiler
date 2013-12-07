@@ -1,0 +1,13 @@
+lib access_profiler
+	: # sources
+	access_profiler.cpp
+	: # requirements
+	: # default build
+	<link>static
+	: # usage-requirements
+	<include>.
+	<include>bfd
+	;
+
+exe test : test.cpp : <library>access_profiler/<link>static ;
+
