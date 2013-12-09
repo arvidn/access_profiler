@@ -23,6 +23,13 @@ use the profile as input.
 
 .. _`struct_layout`: https://github.com/arvidn/struct_layout
 
+.. note::
+	``access_profiler`` is currently not compatible with
+	``std::make_shared`` or similar functions, since those
+	won't invoke the ``new`` operator. To profile such types,
+	convert them to regular ``std::shared_ptr`` constructor
+	which still allocates the object with ``new``.
+
 output format
 -------------
 

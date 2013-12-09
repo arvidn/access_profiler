@@ -211,7 +211,7 @@ void init_instrumentation()
 	sa.sa_sigaction = &single_step_handler;
 	sigaction(SIGTRAP, &sa, NULL);
 
-	access.resize(500);
+	access.resize(max_types);
 }
 
 void print_report()
